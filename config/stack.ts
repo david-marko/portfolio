@@ -10,6 +10,7 @@ export enum Stack {
   // Frontend
   react,
   reactnative,
+  flutter,
 
   // Backend
   graphql,
@@ -40,19 +41,12 @@ export const WorkStack = [
   Stack.go,
   Stack.typescript,
   Stack.python,
-  Stack.react,
+  Stack.flutter,
   Stack.aws,
-  Stack.gcp,
-  Stack.kubernetes,
   Stack.docker,
-  Stack.terraform,
-  Stack.nats,
-  Stack.kafka,
   Stack.graphql,
   Stack.postgres,
   Stack.redis,
-  Stack.arangodb,
-  Stack.reactnative,
 ];
 
 type StackInfoMap = {
@@ -79,6 +73,10 @@ export const StackInfo: Record<Stack, StackInfoMap> = {
   },
   [Stack.reactnative]: {
     value: 'React Native',
+    color: Colors.reactnative,
+  },
+  [Stack.flutter]: {
+    value: 'Flutter',
     color: Colors.reactnative,
   },
   [Stack.graphql]: {

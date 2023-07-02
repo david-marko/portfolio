@@ -1,11 +1,11 @@
 ---
-name: Karan Pratap Singh
-shortname: Karan
+name: David Marko
+shortname: Dave
 avatar: /static/avatar.jpg
 occupation: Software Engineer
 company: Curebase
 resume: /static/Karan_Resume.pdf
-email: contact@karanpratapsingh.com
+email: info@davemarko.com
 twitter: https://twitter.com/karan_6864
 linkedin: https://www.linkedin.com/in/karan99
 github: https://github.com/karanpratapsingh
