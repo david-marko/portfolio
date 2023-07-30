@@ -5,7 +5,7 @@ const siteMetadata = {
   description:
     'Software Engineer. I love talking about Software engineering, Business and Finance',
   language: 'en-us',
-  theme: 'system', // system, dark or light
+  theme: 'dark', // system, dark or light
   siteUrl: 'https://davemarko.com',
   siteRepo: 'https://github.com/david-marko/portfolio',
   siteLogo: '/static/images/logo.png',

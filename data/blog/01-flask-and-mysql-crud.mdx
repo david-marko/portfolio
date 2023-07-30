@@ -1,0 +1,139 @@
+---
+title: 'Flask and MySQL: Basic CRUD applications'
+date: '2022-04-15'
+tags: ['python', 'mysql', 'flask', 'crud']
+draft: false
+summary: 'The basics of Python Flask and MySQL'
+images:
+  [
+    'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.anychart.com%2Ftechnical-integrations%2Fsamples%2Fpython-flask-mysql-template%2F&psig=AOvVaw3H2a8WSsxy8ubKeYa66p_N&ust=1690829626357000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCIDQrq6Nt4ADFQAAAAAdAAAAABAD',
+  ]
+authors: ['default']
+---
+
+In this article, we'll set up a simple Flask and MySQL application and perform some CRUD operations.
+
+# Introduction
+
+CRUD applications are one of the most common types of web applications. CRUD stands for Create, Read, Update and Delete. These four basic operations are used to manipulate data in a database.
+
+MySQL is an open-source relational database management system that is used to store and manage data. It is a popular choice for web applications because of its ease of use and scalability. In this article, we will discuss how to build a CRUD application using Python Flask and MySQL.
+
+Python Flask is a lightweight web framework that is used for building web applications. It is easy to learn and use, and it can be used in conjunction with a database management system like MySQL.
+
+# Setting up the Environment
+
+Before we begin building our CRUD application, we need to set up our environment. We will need to install Python, Flask, and MySQL on our local machine. To install Flask and MySQL, we can use the pip package manager.
+
+We will also need to create a database in MySQL to store our data. We can do this using the MySQL command line interface or a GUI tool like MySQL Workbench.
+
+## Requirements
+
+- MYSQL Workbench: [Download Here](https://dev.mysql.com/downloads/workbench/)
+- Python
+- VisualCode
+- Pymysql
+
+You can install Python dependencies using `pip install flask pymysql` for MacOS or Linux, or python -m `pip install flask pymysql` on windows
+
+# Basic Application
+
+Once we have set up our environment, we can create a new Flask application. We can do this by creating a new Python file and importing the Flask module.
+
+```python
+from flask import Flask
+
+app = Flask(__name__)
+```
+
+We can then create a new route that will display a list of all the items in our database.
+
+```python
+@app.route('/')
+def index():
+    return 'Hello, World!'
+```
+
+## Connecting a database
+
+Go to MYSQL Workbench, and create a new database called crudapp where our data will be hosted. Let's create a new table called items
+
+```python
+import pymysql
+
+conn = pymysql.connect(
+    host='localhost',
+    user='root',
+    password='',
+    database='crudapp'
+)
+```
+
+We can then create a new cursor object and execute a SQL query to retrieve all the items in our database.
+
+```python
+cur = conn.cursor()
+cur.execute('SELECT * FROM items')
+items = cur.fetchall()
+```
+
+## Creating the CRUD Functionality
+
+Now that we have our database connection and data retrieval working, we can move on to creating the CRUD functionality for our application. We will create four new routes: one for creating new items, one for reading existing items, one for updating existing items, and one for deleting items.
+
+### Create:
+
+```python
+@app.route('/create')
+def create():
+    cur = conn.cursor()
+    cur.execute("INSERT INTO items (name, description) VALUES ('New Item', 'This is a new item')")
+    conn.commit()
+    return 'Item created successfully'
+```
+
+### Read:
+
+```python
+@app.route('/read')
+def read():
+    cur = conn.cursor()
+    cur.execute('SELECT * FROM items')
+    items = cur.fetchall()
+    return str(items)
+```
+
+### Update:
+
+```python
+@app.route('/update')
+def update():
+    cur = conn.cursor()
+    cur.execute("UPDATE items SET description='Updated description' WHERE id=1")
+    conn.commit()
+    return 'Item updated successfully'
+```
+
+### Delete:
+
+```python
+@app.route('/delete')
+def delete():
+    cur = conn.cursor()
+    cur.execute("DELETE FROM items WHERE id=1")
+    conn.commit()
+    return 'Item deleted successfully'
+```
+
+## Running the Application:
+
+Finally, we can run our Flask application and test out the CRUD functionality. We can do this by running the following command in our terminal:
+
+```bash
+export FLASK_APP=app.py
+flask run
+```
+
+# Conclusion:
+
+In this article, we have learned how to build a simple CRUD application using Python Flask and MySQL. We have covered the basic steps
