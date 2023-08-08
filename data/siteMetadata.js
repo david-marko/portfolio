@@ -5,7 +5,7 @@ const siteMetadata = {
   description:
     'Software Engineer. I love talking about Software engineering, Business and Finance',
   language: 'en-us',
-  theme: 'system', // system, dark or light
+  theme: 'dark', // system, dark or light
   siteUrl: 'https://davemarko.com',
   siteRepo: 'https://github.com/david-marko/portfolio',
   siteLogo: '/static/images/logo.png',
@@ -24,7 +24,7 @@ const siteMetadata = {
     // supports plausible, simpleAnalytics, umami or googleAnalytics
     plausibleDataDomain: '', // e.g. tailwind-nextjs-starter-blog.vercel.app
     simpleAnalytics: false, // true or false
-    umamiWebsiteId: '', // e.g. 123e4567-e89b-12d3-a456-426614174000
+    umamiWebsiteId: '2f4dc5c8-146c-4ec1-a730-e0f6fca850b9', // e.g. 123e4567-e89b-12d3-a456-426614174000
     googleAnalyticsId: process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID, // e.g. UA-000000-2 or G-XXXXXXX
   },
   newsletter: {
