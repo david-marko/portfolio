@@ -1,0 +1,168 @@
+---
+title: 'My Painful Journey into Python Asyncio: A quick look at some mistakes and bugs'
+date: '2023-02-27'
+tags: ['python', 'debugging', 'fast_api']
+draft: false
+summary: 'Python Backend Development and Debugging Asyncio errors'
+images:
+  [
+    'https://cdn.hashnode.com/res/hashnode/image/stock/unsplash/ZIPFteu-R8k/upload/9cb086a1427fa951275f107b97e5644b.jpeg?w=1600&h=840&fit=crop&crop=entropy&auto=compress,format&format=webp',
+  ]
+authors: ['default']
+---
+
+# Introduction
+
+Hi, I am David, a Python developer. Today, let us look at Asyncio, an advanced tool I consistently find myself using when working on different projects and optimizing performance.
+
+Debugging is one of the things you can't avoid as a developer at any level. You could almost say that coding is majorly debugging.
+
+My JIRA boards and Github issues are filled up with several bugs related to Asyncio. It is a module I enjoy using the most but struggle to implement. I have a lot of painful and happy memories from every Asyncio-related error or issue I have ever gotten. Asyncio documentation is not beginner friendly at all and it does take a while to capture all the concepts and properly implement them into your code.
+
+So let's get into it
+
+# What is Asyncio
+
+When building Backend systems or Enterprise APIs, it is quite common to rely on so many different tools and frameworks, both internal and external. These include Mail Servers (SendGrid, Twilio, MailChimp), Databases(PostgreSQL, MongoDB, MySQL), Serverless functions(AWS Lambda, Vercel, OnRender), Analytics tools(Mixpanel, Sentry, Moesif), Payment Gateways (Stripe, Flutterwave, Paystack) and more. How tasks are queued and processed is vital to the performance of your system.
+
+Asyncio is a module in Python that allows asynchronous Input and Output, which means your code can handle multiple tasks at the same time without blocking other operations.
+
+Asyncio is used to write code that has "coroutine-based concurrency" using the async/await expressions.
+
+A coroutine is a specialized function in Python that allows you to suspend its execution and resume it at any given time. This is a Python function that can be paused and resumed at a later time without blocking the main thread of execution.
+
+> Asyncio module is part of the Python standard library since Python 3.4
+
+In Python, a coroutine is defined using the `async def` syntax. Here's an example of a coroutine that prints "Hello" and "world" with a 1-second delay in between:
+
+```python
+import asyncio
+async def hello_world():
+    print("Hello")
+    await asyncio.sleep(1)
+    print("world")
+
+loop = asyncio.get_event_loop()
+loop.run_until_complete(hello_world())
+```
+
+In this example, I defined a coroutine `hello_world()` that prints "Hello", waits for 1-second using `asyncio.sleep()`, and then prints "world". We then use `asyncio.get_event_loop()` to get the event loop, and [`loop.run`](http://loop.run)`_until_complete()` to run the coroutine. The output of this code will be:
+
+```bash
+Hello
+world
+```
+
+You can read more about Asynchronous Programming, Tasks, Queues and other advanced features [here](https://superfastpython.com/python-asyncio/)
+
+# Debugging
+
+The concepts for Asyncio are very straightforward and you can read more about it from the official documentation [here](https://docs.python.org/3/library/asyncio.html). Let's focus more on the bugs and errors I have had to fix recently.
+
+## Logical errors:
+
+When implementing complex process flows in the backend, it is easy to badly implement the flow of tasks and queues in the right order.
+
+This error last occurred when I tried to set up a Flask route to register a user and send a `user_id` from the database and send it to a Mixpanel API to track.
+
+I find myself sketching out diagrams or using pseudo-code to get better context and visualize the solutions better.
+
+> Closely monitor the arrangement of functions in and outside the event-loop as this would dictate the order of execution for functions and coroutines.
+
+## **RuntimeWarning**
+
+I occasionally get such errors for quite silly reasons. This error usually occurs when I create an async function and forget to insert it into an Eventloop
+
+```python
+import asyncio
+
+async def add(x,y):
+    return x+y
+
+add(1,3)
+```
+
+This would show the following error
+
+```bash
+david$ python asyncio_hashnode.py
+/Users/david/Desktop/hashnode/asyncio/asyncio.py:6: RuntimeWarning: coroutine 'add' was never awaited
+  add(1,3)
+RuntimeWarning: Enable tracemalloc to get the object allocation traceback
+```
+
+A quick fix is to ensure that a task is created and async function is inserted into an eventloop
+
+```python
+import asyncio
+
+loop = asyncio.get_event_loop()
+
+async def add(x,y):
+    await asyncio.sleep(3) # Pause execution for 3 seconds
+    print(x+y)
+
+print("Async IO EventLoop Example")
+task = loop.create_task(add(1,2))
+print("**********Processing***************") # This runs concurrently with the add(x,y) function
+loop.run_until_complete(task)
+```
+
+`Task was destroyed but it is pending!` error. This pops up when you're not properly awaiting a coroutine or when a coroutine is running and you try to cancel it.
+
+## Runtime Error
+
+The "RuntimeError: This event loop is already running" error. This usually happens when you try to run an event loop within another event loop, or when you forget to stop an event loop before starting another one.
+
+This happened to me while trying to access a payment function running on AWS Lambda. The serverless function (Also in Python) manages billing information and acts as a gateway. I had to access it to verify a transaction_id right before saving a record to the database.
+
+```python
+import asyncio
+
+async def verify_txref(tx_ref):
+    response = {}
+    # Send to AWS_lambda and return a response
+    return response
+
+async def save_billing(tx_ref):
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(verify_txref(tx_ref))
+    # db.query() function to insert records to Database
+    loop.close()
+
+loop = asyncio.get_event_loop()
+loop.run_until_complete(main())
+```
+
+A simple solution for this was to use the `asyncio.wait_for()` function instead while keeping all coroutines in the same event loop.
+
+## TimeoutError
+
+This error happens when a coroutine takes too long to complete and times out. It's like when you order takeout and it takes forever to arrive, except in this case, your code isn't getting cold, it's just not getting executed.
+
+This happened as I was using a coroutine to send OTPs and it had to notify another function on completion to send out a notification to Redis. I set a timeout for sending out notifications but the coroutine depended on a second coroutine which sometimes took longer or responded instantly.
+
+```python
+import asyncio
+
+async def send_otp():
+    # OTP Scripts here
+    await asyncio.sleep(10)
+
+async def notify_otp():
+    try:
+        await asyncio.wait_for(send_otp(), timeout=5)
+    except asyncio.TimeoutError:
+        print("Operation timed out")
+
+loop = asyncio.get_event_loop()
+loop.run_until_complete(notify_otp())
+```
+
+These errors were always hard to catch as they usually occurred when I connected two functions without knowing the average response time to expect. Timeouts are important as you would not want to leave coroutines running for a very long time.
+
+# Conclusion
+
+Asyncio is a powerful addition to the Python Language and it does take a different and better approach to basic threading that I had gotten used to for so many years. Hopefully, you can pick up a few tips on things to look out for and feel free to comment or contact me for further inquiries.
+
+You can reach out to me via email: markodave46@gmail.com
