@@ -1,0 +1,116 @@
+---
+title: 'From Python to GoLang'
+date: '2023-02-23'
+tags: ['python', 'golang', 'flask', 'backend']
+draft: false
+summary: 'Why I may have to switch to GoLang'
+images:
+  [
+    'https://cdn.hashnode.com/res/hashnode/image/stock/unsplash/_Lnid7JAWFQ/upload/27c13436c220080cc1ea8168b2d1d266.jpeg?w=1600&h=840&fit=crop&crop=entropy&auto=compress,format&format=webp',
+  ]
+authors: ['default']
+---
+
+# Introduction
+
+First, let me introduce myself. My name is David, and I have been using Python for over six years, mainly for backend development. It's 5 AM on a Monday and I have a few thoughts to share.
+
+Now, let's get to the topic at hand. Moving from Python Flask to GoLang can be a big decision, but it's one that many developers are making these days. One of the biggest reasons for this is performance.
+
+Python is an interpreted language, which means that it can be slower than compiled languages like Go. Without explaining much of the language internals, I wanted to just build two quick applications and benchmark them for comparison.
+
+# Flask
+
+Flask is a popular Python web framework that allows you to build web applications quickly and easily. Below is a simple Hello world server built in Python Flask.
+
+```python
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Hello World"
+```
+
+However, as your application grows and becomes more complex, you may start to notice performance issues.
+
+# Go
+
+That's where Go comes in. Go is a compiled language that is designed for performance and scalability. It was created by Google to solve some of the same problems that Flask was designed to solve, but with a focus on speed and efficiency.
+
+Here's some example code in Go for a simple "Hello, World!" web server:
+
+```go
+package main
+
+import (
+    "fmt"
+    "net/http"
+)
+
+func handler(w http.ResponseWriter, r *http.Request) {
+    fmt.Fprintf(w, "Hello, World!")
+}
+
+func main() {
+    http.HandleFunc("/", handler)
+    http.ListenAndServe(":8080", nil)
+}
+```
+
+This code sets up a simple web server that listens on port 8080 and responds with "Hello, World!" to any incoming requests. It's very lightweight and efficient, which is one of the reasons why Go is so popular for building web applications.
+
+# Benchmarks
+
+To Benchmark the performance benchmarks for Go and Python, I deployed both scripts to different AWS EC2 (us-east-2) instances that I had paused on my account. I used a load-testing tool called Locust to run multiple threaded connections to a single IP address and port.
+
+## Load testing setup
+
+To set up my load testing environment, I installed locust using the following command
+
+```bash
+pip install locust
+```
+
+Then set up a file locustfile.py to create the load test configurations
+
+```python
+from locust import HttpUser, task
+
+class HelloWorldUser(HttpUser):
+    @task
+    def hello_world(self):
+        self.client.get("/")
+```
+
+Next is to run the script inside a terminal running 100 concurrent users at a Spawn rate of 10 users per second. I opened the terminal in the directory containing locustfile.py and used the command below
+
+```python
+locust --headless --users 100 --spawn-rate 10 -H <my-ec2-ip-address:port>
+```
+
+## Benchmark result
+
+To give you an idea of the performance benefits of using Go, let's take a look at some benchmarks. The scripts were run on clean EC2 installations with no background processes. I mainly wanted to measure two aspects, Requests per second compared to computer memory performance from monitoring the EC2 Instance.
+
+| Language | Requests Per Second | Memory Usage (EC2 t2.micro) |
+| -------- | ------------------- | --------------------------- |
+| Go       | &lt;2200 req/s      | 25% CPU Usage               |
+| Python   | &lt;600 req/s       | 60% CPU Usage               |
+
+As indicated from the results I got, a Go server was able to handle over 3.5 times the requests and still perform at about half of the CPU Usage. That's a significant difference in performance, especially if you're running a high-traffic website or web application.
+
+# Conclusion
+
+An interpreted language will likely always be slower than a compiled language but it was fun to measure by how much. Python does come with lots of advantages though and I still recommend it for its vast community and framework varieties to handle several tasks.
+
+Switching to Go might reduce my AWS monthly bill by half and unlock more possibilities when building large-scale backend systems. I am excited to learn and write more about it in the coming year.
+
+Recommended Reads:
+
+- [https://docs.locust.io/en/stable/quickstart.html](https://docs.locust.io/en/stable/quickstart.html)
+- [https://go.dev/](https://go.dev/)
+- [https://flask.palletsprojects.com/en/2.2.x/](https://flask.palletsprojects.com/en/2.2.x/)
+- [https://programming-language-benchmarks.vercel.app/go-vs-python](https://programming-language-benchmarks.vercel.app/go-vs-python)
+- [https://uvik.net/blog/go-vs-python/](https://uvik.net/blog/go-vs-python/) For an in-depth language overview, benchmark and comparisons
