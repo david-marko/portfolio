@@ -11,11 +11,14 @@ export enum Stack {
   react,
   reactnative,
   flutter,
+  bootstrap,
+  tailwindcss,
 
   // Backend
   graphql,
   node,
   django,
+  flask,
 
   // Cloud
   aws,
@@ -72,6 +75,18 @@ export const StackInfo: Record<Stack, StackInfoMap> = {
   [Stack.react]: {
     value: 'React',
     color: Colors.react,
+  },
+  [Stack.tailwindcss]: {
+    value: 'TailwindCSS',
+    color: Colors.graphql,
+  },
+  [Stack.bootstrap]: {
+    value: 'Bootstrap',
+    color: Colors.aws,
+  },
+  [Stack.flask]: {
+    value: 'Flask',
+    color: Colors.gcp,
   },
   [Stack.reactnative]: {
     value: 'React Native',
@@ -142,11 +157,11 @@ export const StackInfo: Record<Stack, StackInfoMap> = {
     color: Colors.terraform,
   },
   [Stack.pandas]: {
-    value: 'Terraform',
+    value: 'Pandas',
     color: Colors.python,
   },
   [Stack.jupyter]: {
-    value: 'Terraform',
+    value: 'Jupyter',
     color: Colors.terraform,
   },
 };

@@ -16,8 +16,8 @@ export default function Projects() {
         <div className='container py-12'>
           <h2>
             {' '}
-            Below are various projects, tasks or libraries I have worked on. (in
-            no particular order){' '}
+            Below are some of the various projects, tasks or libraries I have
+            worked on. (in no particular order){' '}
           </h2>
           <br />
           <div className='-m-4 flex flex-wrap'>

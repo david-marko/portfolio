@@ -180,4 +180,124 @@ export const projects: Project[] = [
     },
     subProjects: [],
   },
+  {
+    title: 'Eversend Payments Gateway Python',
+    slug: 'eversend unofficial',
+    banner:
+      'https://res.cloudinary.com/dlvvvnsoq/image/upload/v1692700470/eversend_x0qjik.webp',
+    website: 'https://github.com/david-marko/eversend-unofficial',
+    description: 'A tiny library to connect and use the Eversend Business API',
+    shortDescription: 'Unofficial SDK for Eversend Business Platform',
+    repository: 'https://github.com/david-marko/eversend-unofficial',
+    stack: [Stack.python],
+    dimensions: [650, 350],
+    screenshots: [],
+    deployment: {
+      web: 'https://github.com/david-marko/Introduction-to-data-analytics---7th-Jan-2023',
+    },
+    subProjects: [],
+  },
+  {
+    title: 'Telegram Movie Bot with Flutterwave Subscriptions',
+    slug: 'python bot',
+    banner:
+      'https://res.cloudinary.com/dlvvvnsoq/image/upload/v1692702895/telegram_rpycex.jpg',
+    website: 'https://github.com/david-marko/ugflix',
+    description:
+      'A project for a client to host and manage a Telegram bot that also has support for subscription and free trials. The bot allows 3 days free trial and then collects a monthly subscription of via MPesa, VISA, Crypto and more. It also supports download and search and movies continuations',
+    shortDescription: 'Telegram Bot',
+    repository: 'https://github.com/david-marko/ugflix',
+    stack: [Stack.python, Stack.aws, Stack.flask, Stack.postgres, Stack.redis],
+    dimensions: [850, 350],
+    screenshots: [],
+    deployment: {
+      web: 'https://github.com/david-marko/ugflix',
+    },
+    subProjects: [],
+  },
+  {
+    title: 'WitnessLaw',
+    slug: 'website',
+    banner:
+      'https://res.cloudinary.com/dlvvvnsoq/image/upload/v1692701310/Screenshot_2023-08-22_at_13.45.49_w9dhij.png',
+    website: 'https://witnesslaw.com',
+    description: 'Website for a Law firm',
+    shortDescription: 'Website for a Law firm',
+    repository: 'https://witnesslaw.com',
+    stack: [Stack.bootstrap],
+    dimensions: [850, 350],
+    screenshots: [
+      'https://res.cloudinary.com/dlvvvnsoq/image/upload/v1692701310/Screenshot_2023-08-22_at_13.45.49_w9dhij.png',
+      'https://res.cloudinary.com/dlvvvnsoq/image/upload/v1692701312/Screenshot_2023-08-22_at_13.46.40_bg7lkz.png',
+      'https://res.cloudinary.com/dlvvvnsoq/image/upload/v1692701323/Screenshot_2023-08-22_at_13.46.10_miqoj7.png',
+      'https://res.cloudinary.com/dlvvvnsoq/image/upload/v1692701309/Screenshot_2023-08-22_at_13.47.39_e1lqvw.png',
+    ],
+    deployment: {
+      web: 'https://witnesslaw.com',
+    },
+    subProjects: [],
+  },
+  {
+    title: 'Nilotech Website',
+    slug: 'website',
+    banner:
+      'https://res.cloudinary.com/dlvvvnsoq/image/upload/v1692700860/Screenshot_2023-08-22_at_13.36.44_yylmcj.png',
+    website: 'https://nilotech.com.ss',
+    description: 'Website for a tech solutions agency',
+    shortDescription: 'Website for a tech solutions agency',
+    repository: 'https://nilotech.com.ss',
+    stack: [Stack.python, Stack.bootstrap, Stack.tailwindcss, Stack.aws],
+    dimensions: [850, 350],
+    screenshots: [
+      'https://res.cloudinary.com/dlvvvnsoq/image/upload/v1692700877/Screenshot_2023-08-22_at_13.40.09_pxdrvx.png',
+      'https://res.cloudinary.com/dlvvvnsoq/image/upload/v1692700868/Screenshot_2023-08-22_at_13.40.26_nbwayc.png',
+      'https://res.cloudinary.com/dlvvvnsoq/image/upload/v1692700883/Screenshot_2023-08-22_at_13.40.42_tmx8hx.png',
+      'https://res.cloudinary.com/dlvvvnsoq/image/upload/v1692700867/Screenshot_2023-08-22_at_13.40.34_ywpup9.png',
+    ],
+    deployment: {
+      web: 'https://nilotech.com.ss',
+    },
+    subProjects: [],
+  },
+  {
+    title: 'Twitter Scrapping with Python',
+    slug: 'python and tweepy',
+    banner:
+      'https://res.cloudinary.com/dlvvvnsoq/image/upload/v1692701951/twitter-python-logos.width-808_lmh7cf.jpg',
+    website: 'https://github.com/david-marko/ssot_scrapper',
+    description: 'Scrapper Bot for SSOT Using Python Tweepy and MySQL',
+    shortDescription: 'Scrapper Bot for SSOT Using Python Tweepy and MySQL',
+    repository: 'https://github.com/david-marko/ssot_scrapper',
+    stack: [
+      Stack.python,
+      Stack.aws,
+      Stack.postgres,
+      Stack.pandas,
+      Stack.pandas,
+    ],
+    dimensions: [850, 350],
+    screenshots: [],
+    deployment: {
+      web: 'https://github.com/david-marko/ssot_scrapper',
+    },
+    subProjects: [],
+  },
+  {
+    title: 'Python Custom Requests Wrapper',
+    slug: 'python',
+    banner:
+      'https://res.cloudinary.com/dlvvvnsoq/image/upload/v1692701684/pythonfeature_nmi6ig.png',
+    website: 'https://github.com/david-marko/pyreq_library',
+    description:
+      'I was looking for a low level approach to managing python requests and simple to implement. Python Requests is by far the most popular and easiest to use. It always works as intended but can prove unreliable in terms of performance. PyCURL is a great wrapper for the Curl library for Unix systems and it provides access and control of requests. It has greater performance compared to Python Requests but isnt easy to implement. It also provides support for other protocols like FTP / SSH and more',
+    shortDescription: 'Wrapper Function for PyCURL with Requests Syntax',
+    repository: 'https://github.com/david-marko/pyreq_library',
+    stack: [Stack.python, Stack.pandas],
+    dimensions: [850, 350],
+    screenshots: [],
+    deployment: {
+      web: 'https://github.com/david-marko/pyreq_library',
+    },
+    subProjects: [],
+  },
 ];
