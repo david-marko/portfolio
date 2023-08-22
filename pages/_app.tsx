@@ -15,7 +15,8 @@ import { ThemeProvider, useTheme } from 'next-themes';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 
-import Analytics from '@/components/analytics';
+// import Analytics from '@/components/analytics';
+import { Analytics } from '@vercel/analytics/react';
 import { ClientReload } from '@/components/ClientReload';
 import LayoutWrapper from '@/components/LayoutWrapper';
 import siteMetadata from '@/data/siteMetadata';
