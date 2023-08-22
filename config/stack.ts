@@ -35,6 +35,8 @@ export enum Stack {
   docker,
   kubernetes,
   terraform,
+  pandas,
+  jupyter,
 }
 
 export const WorkStack = [
@@ -136,6 +138,14 @@ export const StackInfo: Record<Stack, StackInfoMap> = {
     color: Colors.kubernetes,
   },
   [Stack.terraform]: {
+    value: 'Terraform',
+    color: Colors.terraform,
+  },
+  [Stack.pandas]: {
+    value: 'Terraform',
+    color: Colors.python,
+  },
+  [Stack.jupyter]: {
     value: 'Terraform',
     color: Colors.terraform,
   },

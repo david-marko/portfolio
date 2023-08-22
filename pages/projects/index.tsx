@@ -14,6 +14,12 @@ export default function Projects() {
       <div className='fade-in divide-y-2 divide-gray-100 dark:divide-gray-800'>
         <Header title='Projects' />
         <div className='container py-12'>
+          <h2>
+            {' '}
+            Below are various projects, tasks or libraries I have worked on. (in
+            no particular order){' '}
+          </h2>
+          <br />
           <div className='-m-4 flex flex-wrap'>
             {config.projects.map(({ slug, title, description, banner }) => (
               <Card

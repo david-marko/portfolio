@@ -23,7 +23,7 @@ export const contact: Contact = {
     linkedin: 'https://linkedin.com/in/david-marko-b9896b228/',
     twitter: 'https://twitter.com/0xdvvid',
     youtube: 'https://www.youtube.com/c/UCjemanZ7ka3u7GG8wX4QFyA',
-    email: 'mailto:info@davemarko.com',
+    email: 'mailto:markodave46@gmail.com',
     buymeacoffee: 'https://www.buymeacoffee.com/davidmarko',
   },
 };
