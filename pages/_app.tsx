@@ -10,7 +10,7 @@ import '@fontsource/open-sans/500.css';
 import '@fontsource/open-sans/600.css';
 import '@fontsource/open-sans/700.css';
 import '@fontsource/open-sans/800.css';
-import * as gtag from 'pages/gtag';
+import * as gtag from 'config/gtag';
 
 import { ThemeProvider, useTheme } from 'next-themes';
 import type { AppProps } from 'next/app';
