@@ -2,7 +2,7 @@ export enum ContactType {
   github = 'github',
   linkedin = 'linkedin',
   twitter = 'twitter',
-  youtube = 'youtube',
+  // youtube = 'youtube',
   email = 'email',
   buymeacoffee = 'buymeacoffee',
 }
@@ -22,7 +22,7 @@ export const contact: Contact = {
     github: 'https://github.com/david-marko',
     linkedin: 'https://linkedin.com/in/david-marko-b9896b228/',
     twitter: 'https://twitter.com/0xdvvid',
-    youtube: 'https://www.youtube.com/c/UCjemanZ7ka3u7GG8wX4QFyA',
+    // youtube: 'https://www.youtube.com/c/UCjemanZ7ka3u7GG8wX4QFyA',
     email: 'mailto:markodave46@gmail.com',
     buymeacoffee: 'https://www.buymeacoffee.com/davidmarko',
   },

@@ -33,6 +33,37 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    title: 'Zidallie',
+    slug: 'zidallie',
+    banner:
+      'https://res.cloudinary.com/dlvvvnsoq/image/upload/v1714723940/03_bdivsh.webp',
+    website: 'http://zidallie.co.ke',
+    description:
+      'Ride hailing platform for Students in Kenya; Inclusive of a Driver Application, Parents App and School Dashboard.',
+    shortDescription: 'Ride hailing platform for Students',
+    repository: '',
+    stack: [
+      Stack.react,
+      Stack.typescript,
+      Stack.postgres,
+      Stack.docker,
+      Stack.flask,
+      Stack.flutter,
+    ],
+    dimensions: [350, 160],
+    screenshots: [
+      'https://res.cloudinary.com/dlvvvnsoq/image/upload/v1714723939/01_gv1d9d.webp',
+      'https://res.cloudinary.com/dlvvvnsoq/image/upload/v1714723939/02_s7z5dz.webp',
+      'https://res.cloudinary.com/dlvvvnsoq/image/upload/v1714723940/03_bdivsh.webp',
+    ],
+    deployment: {
+      web: 'https://zidallie.co.ke',
+      android:
+        'https://play.google.com/store/apps/details?id=com.zidallie.parents&pcampaignid=web_share',
+    },
+    subProjects: [],
+  },
+  {
     title: 'Mwanza',
     slug: 'mwanza',
     banner:
