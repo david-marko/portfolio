@@ -5,7 +5,7 @@ const siteMetadata = {
   description:
     'Software Engineer. I love talking about Software engineering, Business and Finance',
   language: 'en-us',
-  theme: 'dark', // system, dark or light
+  theme: 'light', // system, dark or light
   siteUrl: 'https://davemarko.com',
   siteRepo: 'https://github.com/david-marko/portfolio',
   siteLogo: '/static/images/logo.png',
@@ -15,7 +15,7 @@ const siteMetadata = {
   github: 'https://github.com/david-marko/',
   twitter: 'https://twitter.com/0xdvvid',
   facebook: 'https://facebook.com',
-  youtube: 'https://youtube.com',
+  // youtube: 'https://youtube.com',
   linkedin: 'https://www.linkedin.com/in/david-marko-b9896b228/',
   locale: 'en-US',
   analytics: {
